@@ -7,10 +7,24 @@
   "source": "https://github.com/AdvancedLearning/adv_windows",
   "project_page": "https://github.com/AdvancedLearning/adv_windows",
   "issues_url": "https://github.com/AdvancedLearning/adv_windows/issues",
-  "types": [
-
-  ],
+  "types": [],
   "description": "Baseline windows configuration for windows servers managed my Advanced Learning. Includes common tools that are useful on servers (e.g. Brackets, CentraSTage)",
   "dependencies": [
+    {
+      "name": "puppetlabs/dism",
+      "version_requirement": ">=1.0.0"
+    },
+    {
+      "name": "puppetlabs/powershell",
+      "version_requirement": ">=1.0.2"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.2.1"
+    },
+    {
+      "name": "martezr/windows_disable_ipv6",
+      "version_requirement": ">=0.1.1"
+    }
   ]
 }
