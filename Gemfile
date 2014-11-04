@@ -7,6 +7,7 @@ else
 end
 
 gem 'rake'
+gem 'CFPropertyList', '~> 2.2.6'
 gem 'rspec', '~> 3.0.0'
 gem 'puppet-lint'
 gem 'rspec-puppet'
