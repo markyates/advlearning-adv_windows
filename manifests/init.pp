@@ -1,4 +1,7 @@
-# manifests/init.pp
+# == Class: adv_windows
+#
+# A class to serve as example to do some tests on.
+#
 
 class adv_windows($workFolder = $title,
                   $defaultRegion,
@@ -75,10 +78,10 @@ class adv_windows($workFolder = $title,
       require => File[$workFolder]
     }
 
-    file{"$workFolder\\AWSPVDriverPackager.exe":
+    file{"${workFolder}\\AWSPVDriverPackager.exe":
       ensure  => present,
       source  => 'puppet:///modules/adv_windows/AWSPVDriverPackager.exe',
-      require => File[{$workFolder},"${workFolder}\\RemediateDriverIssue.ps1"],
+      require => File[$workFolder,"${workFolder}\\RemediateDriverIssue.ps1"],
       notify  => Exec['AWSPVDriverPackager']
     }
 

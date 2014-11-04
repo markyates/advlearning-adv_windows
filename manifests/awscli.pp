@@ -12,12 +12,12 @@ class adv_windows::awscli($workFolder,
   file{'AWSCLI':
     ensure => present,
     path   => "${workFolder}\\AWSCLI64.msi",
-    source => 'puppet:///modules/progresso/AWSCLI64.msi',
-    notify => Exec['AWSCLI-Install']
+    source => 'puppet:///modules/adv_windows/AWSCLI64.msi',
+    notify => Exec['AWSCLIInstall']
   }
 
-  exec{'AWSCLI-Install':
-    command     => "C:\Windows\system32\msiexec.exe /i ${workFolder}\AWSCLI64.msi /qn INSTALLLEVEL=1", # lint:ignore:80chars
+  exec{'AWSCLIInstall':
+    command     => "C:\\Windows\\system32\\msiexec.exe /i ${workFolder}\\AWSCLI64.msi /qn INSTALLLEVEL=1", # lint:ignore:80chars
     refreshonly => true
   }
 

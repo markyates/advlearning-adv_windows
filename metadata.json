@@ -1,6 +1,6 @@
 {
   "name": "advlearning-adv_windows",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "advlearning",
   "summary": "Base config, services and apps for Advanced Learning windows servers",
   "license": "Apache License, Version 2.0",
@@ -25,6 +25,10 @@
     {
       "name": "martezr/windows_disable_ipv6",
       "version_requirement": ">=0.1.1"
+    },
+    {
+      "name": "badgerious/windows_env",
+      "version_requirement": ">= 2.2.0"
     }
   ]
 }
