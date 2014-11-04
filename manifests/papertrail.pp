@@ -5,8 +5,8 @@ class adv_windows::papertrail($workFolder) {
   ensure_resource(file, $workFolder, {ensure => directory})
 
   file{'nxlog':
-    path   => "${workFolder}\\nxlog-ce-2.8.1248.msi",
     ensure => present,
+    path   => "${workFolder}\\nxlog-ce-2.8.1248.msi",
     source => 'puppet:///modules/adv_windows/nxlog-ce-2.8.1248.msi',
     notify => Exec['InstallPapertrail']
   }
@@ -18,16 +18,16 @@ class adv_windows::papertrail($workFolder) {
   }
 
   ensure_resource(file, 'C:\\Program Files (x86)\\nxlog', {ensure => directory})
-  ensure_resource(file, 'C:\\Program Files (x86)\\nxlog\\conf', {ensure => directory})
+  ensure_resource(file, 'C:\\Program Files (x86)\\nxlog\\conf', {ensure => directory})  # lint:ignore:80chars
 
   file{'nxlog.conf':
-    path        => 'C:\\Program Files (x86)\\nxlog\\conf\\nxlog.conf',
-    ensure      => present,
-    source     => 'puppet:///modules/adv_windows/nxlog.conf'
+    ensure => present,
+    path   => 'C:\\Program Files (x86)\\nxlog\\conf\\nxlog.conf',
+    source => 'puppet:///modules/adv_windows/nxlog.conf'
   }
 
   service{'nxlog':
-    ensure   => $running,
-    enable   => $enable
+    ensure => true,
+    enable => true
   }
 }

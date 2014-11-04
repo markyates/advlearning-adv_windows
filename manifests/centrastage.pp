@@ -1,7 +1,6 @@
 # manifests/centrastage.pp
 
-class adv_windows::centrastage($workFolder,
-                               $csenv){
+class adv_windows::centrastage($workFolder, $csenv){
 
   File { source_permissions => ignore }
 
