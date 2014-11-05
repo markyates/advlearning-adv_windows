@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'should install New Relic server monitor' do
+describe 'adv_windows::nrserver', :type => 'class' do
   let(:params) { {:workFolder => 'D:\\Software',
                   :nrlicense => 'testlicensekey'} }
 
