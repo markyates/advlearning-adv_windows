@@ -13,7 +13,7 @@ class adv_windows::papertrail($workFolder) {
 
   exec{'InstallPapertrail':
     command     => "msiexec.exe /i ${workFolder}\\nxlog-ce-2.8.1248.msi /qb",
-    path        => 'C:\\Windows\\system32',
+    path        => 'C:\Windows\system32',
     refreshonly => true,
   }
 
@@ -22,12 +22,12 @@ class adv_windows::papertrail($workFolder) {
 
   file{'nxlog.conf':
     ensure => present,
-    path   => 'C:\\Program Files (x86)\\nxlog\\conf\\nxlog.conf',
+    path   => 'C:\Program Files (x86)\nxlog\conf\nxlog.conf',
     source => 'puppet:///modules/adv_windows/nxlog.conf'
   }
 
   service{'nxlog':
-    ensure => true,
+    ensure => 'running',
     enable => true
   }
 }
