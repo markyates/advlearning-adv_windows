@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'adv_windows::microsoftnet' do
+  it {should have_dism_resource_count(5)}
 
   it 'should install .NET 3.5' do
     should contain_dism('NetFx3ServerFeatures').with({
