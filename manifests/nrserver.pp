@@ -10,13 +10,13 @@ class adv_windows::nrserver($workFolder,
   # if have a license key install server monitor
   file{'New Relic Server Monitor':
     ensure => present,
-    path   => "${workFolder}\NewRelicServerMonitor_x64.msi",
+    path   => "${workFolder}\\NewRelicServerMonitor_x64.msi",
     source => 'puppet:///modules/adv_windows/NewRelicServerMonitor_x64.msi',
     notify => Exec['InstallServerMonitor']
   }
 
   exec{'InstallServerMonitor':
-    command     => "msiexec.exe /i ${workFolder}\NewRelicServerMonitor_x64.msi /L*v install.log /qn NR_LICENSE_KEY=${nrlicense}", # lint:ignore:80chars
+    command     => "msiexec.exe /i ${workFolder}\\NewRelicServerMonitor_x64.msi /L*v install.log /qn NR_LICENSE_KEY=${nrlicense}", # lint:ignore:80chars
     path        => 'C:\Windows\system32',
     refreshonly => true
   }
