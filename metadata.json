@@ -1,6 +1,6 @@
 {
   "name": "advlearning-adv_windows",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "advlearning",
   "summary": "Base config, services and apps for Advanced Learning windows servers",
   "license": "Apache License, Version 2.0",

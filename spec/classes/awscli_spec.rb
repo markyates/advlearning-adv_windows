@@ -6,6 +6,8 @@ describe 'adv_windows::awscli', :type => 'class' do
                    :awsAccessKeyId => 'testaccesskeyid',
                    :awsSecretAccessKey => 'testsecretaccesskey' } }
 
+  let(:facts) { { :osfamily => 'windows' } }
+
   it 'should copy file to work folder' do
     should contain_file('AWSCLI').with({
       'ensure' => 'present',
