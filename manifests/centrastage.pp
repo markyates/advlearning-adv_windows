@@ -14,7 +14,7 @@ class adv_windows::centrastage($workFolder, $csenv){
 
   exec{"CSInstall-${csenv}":
     command => "${workFolder}\\AgentSetup_${csenv}.exe",
-    creates => 'C:\\Program Files (x86)\\CentraStage',
+    creates => 'C:\Program Files (x86)\CentraStage',
     require => File["CSInstaller-${csenv}"]
   }
 }
