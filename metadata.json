@@ -4,11 +4,11 @@
   "author": "advlearning",
   "summary": "Base config, services and apps for Advanced Learning windows servers",
   "license": "Apache License, Version 2.0",
-  "source": "https://github.com/AdvancedLearning/adv_windows",
-  "project_page": "https://github.com/AdvancedLearning/adv_windows",
-  "issues_url": "https://github.com/AdvancedLearning/adv_windows/issues",
+  "source": "https://github.com/AdvancedLearning/puppet-adv_windows",
+  "project_page": "https://github.com/AdvancedLearning/puppet-adv_windows",
+  "issues_url": "https://github.com/AdvancedLearning/puppet-adv_windows/issues",
   "types": [],
-  "description": "Baseline windows configuration for windows servers managed my Advanced Learning. Includes common tools that are useful on servers (e.g. Brackets, CentraSTage)",
+  "description": "Baseline windows configuration for windows servers managed my Advanced Learning. Includes common tools that are useful on servers (e.g. Brackets, CentraStage)",
   "dependencies": [
     {
       "name": "puppetlabs/dism",
