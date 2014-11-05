@@ -3,7 +3,7 @@
 # A class to serve as example to do some tests on.
 #
 
-class adv_windows($workFolder = $title,
+class adv_windows($workFolder,
                   $defaultRegion,
                   $awsAccessKeyId,
                   $awsSecretAccessKey,
