@@ -5,7 +5,7 @@ describe 'should install New Relic server monitor' do
                   :nrlicense => 'testlicensekey'} }
 
   it 'should copy the installer' do
-    should contain_file('New Relic Server Monitor').with({
+    should contain_file('nrserverinstaller').with({
       'ensure' => 'present',
       'path'   => 'D:\\Software\\NewRelicServerMonitor_x64.msi',
       'source' => 'puppet:///modules/adv_windows/NewRelicServerMonitor_x64.msi'

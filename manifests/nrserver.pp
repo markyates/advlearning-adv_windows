@@ -8,7 +8,7 @@ class adv_windows::nrserver($workFolder,
   ensure_resource(file, $workFolder, { ensure => directory })
 
   # if have a license key install server monitor
-  file{'New Relic Server Monitor':
+  file{'nrserverinstaller':
     ensure => present,
     path   => "${workFolder}\\NewRelicServerMonitor_x64.msi",
     source => 'puppet:///modules/adv_windows/NewRelicServerMonitor_x64.msi',
