@@ -14,11 +14,4 @@ describe 'adv_windows', :type => 'class' do
 
   # how to test includes? should check that timezone included
 
-  it 'should disable ipv6' do
-    should contain_class('windows_disable_ipv6').with({
-      'ipv6_disable' => true,
-      'ipv6_reboot'  => false
-    })
-  end
-
 end
