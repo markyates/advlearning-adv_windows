@@ -9,7 +9,7 @@ describe 'adv_windows', :type => 'class' do
                   :nrlicense          => 'testnrlicense'} }
 
   it 'should create the work folder' do
-    should contain_file('D:\\Software').with('ensure' => 'directory')
+    should contain_file('D:\Software').with({'ensure' => 'directory'})
   end
 
   # how to test includes? should check that timezone included
@@ -20,6 +20,5 @@ describe 'adv_windows', :type => 'class' do
       'ipv6_reboot'  => false
     })
   end
-
 
 end
