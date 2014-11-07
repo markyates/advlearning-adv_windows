@@ -67,7 +67,7 @@ class adv_windows($workFolder,
 
   # AV Software
   class{'adv_windows::bitdefender':
-    wofkFolder => $workFolder
+    workFolder => $workFolder
   }
 
 
