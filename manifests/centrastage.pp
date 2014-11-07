@@ -6,15 +6,15 @@ class adv_windows::centrastage($workFolder, $csenv){
 
   ensure_resource(file, $workFolder, { ensure => directory })
 
-  file{"CSInstaller-${csenv}":
+  file{"CSInstaller":
     ensure => present,
     path   => "${workFolder}\\AgentSetup_${csenv}.exe",
     source => "puppet:///modules/adv_windows/centrastage/AgentSetup_${csenv}.exe"
   }
 
-  exec{"CSInstall-${csenv}":
+  exec{"CSInstall":
     command => "${workFolder}\\AgentSetup_${csenv}.exe",
     creates => 'C:\Program Files (x86)\CentraStage',
-    require => File["CSInstaller-${csenv}"]
+    require => File["CSInstaller"]
   }
 }
