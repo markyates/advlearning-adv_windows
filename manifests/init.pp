@@ -56,7 +56,7 @@ class adv_windows($workFolder,
 
   # Install New Relic Server Monitor
   class{'adv_windows::nrserver':
-    workfolder => $workFolder,
+    workFolder => $workFolder,
     nrlicense  => $nrlicense
   }
 
