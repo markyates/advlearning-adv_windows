@@ -3,7 +3,7 @@ fixtures:
     stdlib: git://github.com/puppetlabs/puppetlabs-stdlib.git
     initfile: git://github.com/puppetlabs/puppetlabs-inifile.git
     dism: git://github.com/puppetlabs/puppetlabs-dism.git
-    windows_env: git://github.com/badgerious/puppet-windows-env
+    registry: git://github.com/puppetlabs/puppetlabs-registry.git
     windows_disable_ipv6: git://github.com/martezr/puppet-windows_disable_ipv6.git
   symlinks:
     adv_windows: "#{source_dir}"
