@@ -26,7 +26,7 @@ class adv_windows::papertrail($workFolder,
   file{'nxlog.conf':
     ensure => present,
     path   => 'C:\Program Files (x86)\nxlog\conf\nxlog.conf',
-    source => template('adv_windows/nxlog.conf')
+    source => template('adv_windows/nxlog.conf.erb')
   }
 
   service{'nxlog':

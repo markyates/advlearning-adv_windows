@@ -1,5 +1,3 @@
-# http://help.papertrailapp.com/kb/configuration/configuring-remote-syslog-from-windows
-
 ## Please set the ROOT to your nxlog installation directory
 
 #define ROOT C:\Program Files\nxlog
@@ -12,23 +10,23 @@ SpoolDir  %ROOT%\data
 LogFile %ROOT%\data\nxlog.log
 
 <Extension syslog>
-  Module xm_syslog  
+  Module xm_syslog
 </Extension>
 
 # Monitor application log file
 <Input watchfile>
   Module im_file
-  # File "C:/path/to/file.log"  
+  # File "C:/path/to/file.log"
   Exec $Message = $raw_event;
-  SavePos TRUE  
+  SavePos TRUE
   Recursive TRUE
 </Input>
 
 # Monitor Windows event logs
 <Input eventlog>
-  # Uncomment for Windows Vista/2008 or later 
+  # Uncomment for Windows Vista/2008 or later
   Module im_msvistalog
-  
+
   # Uncomment for Windows 2000 or later
   # Module im_mseventlog
 </Input>
@@ -36,15 +34,15 @@ LogFile %ROOT%\data\nxlog.log
 <Processor eventlog_transformer>
   Module pm_transformer
   Exec $Hostname = hostname();
-  OutputFormat syslog_rfc5424  
+  OutputFormat syslog_rfc5424
 </Processor>
 
 <Processor filewatcher_transformer>
   Module pm_transformer
-  
+
   # Uncomment to override the program name
   # Exec $SourceName = 'PROGRAM NAME';
-    
+
   Exec $Hostname = hostname();
   OutputFormat syslog_rfc5424
 </Processor>
