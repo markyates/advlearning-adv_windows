@@ -1,6 +1,6 @@
 {
   "name": "advlearning-adv_windows",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "author": "advlearning",
   "summary": "Base config, services and apps for Advanced Learning windows servers",
   "license": "Apache License, Version 2.0",
@@ -27,8 +27,8 @@
       "version_requirement": ">=0.1.1"
     },
     {
-      "name": "badgerious/windows_env",
-      "version_requirement": ">= 2.2.0"
+      "name": "puppetlabs/registry",
+      "version_requirement": ">= 1.0.3"
     }
   ]
 }
