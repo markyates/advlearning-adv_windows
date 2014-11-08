@@ -23,21 +23,21 @@ describe 'adv_windows::awscli', :type => 'class' do
     })
   end
 
-  it 'should update the registry' do
-    should contain_windows_env('AWS_DEFAULT_REGION').with({
+  it 'should set windows environment variables' do
+    should contain_registry_value('HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\AWS_DEFAULT_REGION').with({
       'ensure'    => 'present',
-      'value'     => 'eu-west-1',
-      'mergemode' => 'clobber'
+      'type'      => 'string',
+      'data'     => 'eu-west-1'
     })
-    should contain_windows_env('AWS_ACCESS_KEY_ID').with({
-      'ensure'    => 'present',
-      'value'     => 'testaccesskeyid',
-      'mergemode' => 'clobber'
+    should contain_registry_value('HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\AWS_ACCESS_KEY_ID').with({
+      'ensure' => 'present',
+      'type'   => 'string',
+      'data'  => 'testaccesskeyid'
     })
-    should contain_windows_env('AWS_SECRET_ACCESS_KEY').with({
-      'ensure'    => 'present',
-      'value'     => 'testsecretaccesskey',
-      'mergemode' => 'clobber'
+    should contain_registry_value('HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\AWS_SECRET_ACCESS_KEY').with({
+      'ensure' => 'present',
+      'type'   => 'string',
+      'data'  => 'testsecretaccesskey'
     })
   end
 end

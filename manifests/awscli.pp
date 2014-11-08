@@ -22,19 +22,19 @@ class adv_windows::awscli($workFolder,
   }
 
   # set th environment variables
-  windows_env{'AWS_DEFAULT_REGION':
-    ensure    => present,
-    value     => $defaultRegion,
-    mergemode => clobber
+  registry_value{'HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\AWS_DEFAULT_REGION':
+    ensure => present,
+    type   => string,
+    data   => $defaultRegion
   }
-  windows_env{'AWS_ACCESS_KEY_ID':
-    ensure    => present,
-    value     => $awsAccessKeyId,
-    mergemode => clobber
+  registry_value{'HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\AWS_ACCESS_KEY_ID':
+    ensure => present,
+    type   => string,
+    data   => $awsAccessKeyId
   }
-  windows_env{'AWS_SECRET_ACCESS_KEY':
-    ensure    => present,
-    value     => $awsSecretAccessKey,
-    mergemode => clobber
+  registry_value{'HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\AWS_SECRET_ACCESS_KEY':
+    ensure => present,
+    type   => string,
+    data   => $awsSecretAccessKey
   }
 }
