@@ -1,6 +1,9 @@
 # manifests/papertrail.pp
 
-class adv_windows::papertrail($workFolder) {
+class adv_windows::papertrail($workFolder,
+                              $host,
+                              $port) {
+
   File { source_permissions => ignore }
   ensure_resource(file, $workFolder, {ensure => directory})
 
@@ -23,7 +26,7 @@ class adv_windows::papertrail($workFolder) {
   file{'nxlog.conf':
     ensure => present,
     path   => 'C:\Program Files (x86)\nxlog\conf\nxlog.conf',
-    source => 'puppet:///modules/adv_windows/nxlog.conf'
+    source => template('adv_windows/nxlog.conf')
   }
 
   service{'nxlog':

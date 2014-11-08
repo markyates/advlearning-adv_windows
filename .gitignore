@@ -1,5 +1,24 @@
-# https://git-scm.com/docs/gitignore
-# https://help.github.com/articles/ignoring-files
-# Example .gitignore files: https://github.com/github/gitignore
-/Gemfile.lock
-/spec/fixtures/modules/**
+# Default .gitignore for Ruby
+*.gem
+*.rbc
+.bundle
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+.project
+
+# OS X
+.DS_Store
+
+# Puppet
+coverage/
+spec/fixtures/modules/*
+spec/fixtures/manifests/*
+Gemfile.lock

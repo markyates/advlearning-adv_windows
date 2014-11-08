@@ -8,7 +8,9 @@ class adv_windows($workFolder,
                   $awsAccessKeyId,
                   $awsSecretAccessKey,
                   $csenv,
-                  $nrlicense) {
+                  $nrlicense,
+                  $pthost,
+                  $ptport) {
   # Defaults
   File { source_permissions => ignore }
 
@@ -62,7 +64,9 @@ class adv_windows($workFolder,
 
   # PaperTral - centralised log collection
   class{'adv_windows::papertrail':
-    workFolder => $workFolder
+    workFolder => $workFolder,
+    host       => $pthost,
+    port       => $ptport
   }
 
   # AV Software

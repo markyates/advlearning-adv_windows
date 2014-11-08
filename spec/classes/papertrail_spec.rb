@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'adv_windows::papertrail' do
-  let(:params) { {:workFolder => 'D:\\Software'} }
+  let(:params) { {:workFolder => 'D:\\Software',
+                  :host => 'logs.papertrailapp.com',
+                  :port => '1234'} }
 
   it 'should copy installer and execute' do
     should contain_file('nxlog').with({
@@ -21,7 +23,6 @@ describe 'adv_windows::papertrail' do
     should contain_file('nxlog.conf').with({
       'ensure' => 'present',
       'path'   => 'C:\\Program Files (x86)\\nxlog\\conf\\nxlog.conf',
-      'source' => 'puppet:///modules/adv_windows/nxlog.conf'
     })
   end
 
