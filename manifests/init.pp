@@ -50,7 +50,7 @@ class adv_windows($workFolder,
 
   # install Adobe Brackets
   package {'Brackets':
-    ensure => present,
+    ensure   => present,
     provider => 'chocolatey',
     require  => Class['chocolatey_sw']
   }
@@ -102,9 +102,9 @@ class adv_windows($workFolder,
     }
 
     exec{'remediateDriverIssue.ps1':
-      command     => 'RemediateDriverIssue.ps1',
-      path        => $workFolder,
-      provider    => powershell
+      command  => 'RemediateDriverIssue.ps1',
+      path     => $workFolder,
+      provider => powershell
     }
   }
 }
