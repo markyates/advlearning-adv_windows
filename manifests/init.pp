@@ -19,6 +19,9 @@ class adv_windows($workFolder,
     ensure => directory
   }
 
+  # Chocolate package manager install
+  include chocolatey-sw
+
   # Windows Timezone
   include adv_windows::timezone
 
@@ -46,8 +49,10 @@ class adv_windows($workFolder,
   }
 
   # install Adobe Brackets
-  class{'adv_windows::brackets':
-    workFolder => $workFolder
+  package {'Brackets':
+    ensure => present,
+    provider => 'chocolatey',
+    require  => Class['chocolatey_sw']
   }
 
   # install CentraStage
@@ -99,8 +104,7 @@ class adv_windows($workFolder,
     exec{'remediateDriverIssue.ps1':
       command     => 'RemediateDriverIssue.ps1',
       path        => $workFolder,
-      provider    => powershell,
-      refreshonly => true
+      provider    => powershell
     }
   }
 }
