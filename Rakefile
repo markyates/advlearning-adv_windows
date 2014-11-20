@@ -11,4 +11,7 @@ task :validate do
   Dir['manifests/*.pp'].each do |manifest|
     sh "puppet parser validate --noop #{manifest}"
   end
+  Dir['templates/**/*.erb'].each do |template|
+    sh "erb -P -x -T '-' #{template} | ruby -c"
+  end
 end
