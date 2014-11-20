@@ -13,6 +13,7 @@ test/tmp
 test/version_tmp
 tmp
 .project
+Gemfile.lock
 
 # OS X
 .DS_Store
