@@ -42,7 +42,6 @@ class adv_windows($workFolder,
 
   # aws command line interface
   class{'adv_windows::awscli':
-    workFolder         => $workFolder,
     defaultRegion      => $defaultRegion,
     awsAccessKeyId     => $awsAccessKeyId,
     awsSecretAccessKey => $awsSecretAccessKey

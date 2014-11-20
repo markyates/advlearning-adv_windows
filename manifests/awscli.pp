@@ -1,24 +1,12 @@
 # manifests/awscli.pp
 
-class adv_windows::awscli($workFolder,
-                          $defaultRegion,
+class adv_windows::awscli($defaultRegion,
                           $awsAccessKeyId,
                           $awsSecretAccessKey) {
 
-  File { source_permissions => ignore }
-
-  ensure_resource(file, $workFolder, { ensure => directory })
-
-  file{'AWSCLI':
-    ensure => present,
-    path   => "${workFolder}\\AWSCLI64.msi",
-    source => 'puppet:///modules/adv_windows/AWSCLI64.msi',
-    notify => Exec['AWSCLIInstall']
-  }
-
-  exec{'AWSCLIInstall':
-    command     => "C:\\Windows\\system32\\msiexec.exe /i ${workFolder}\\AWSCLI64.msi /qn INSTALLLEVEL=1", # lint:ignore:80chars
-    refreshonly => true
+  package{'awscli':
+    ensure   => present,
+    provider => 'chocolatey'
   }
 
   # set th environment variables
