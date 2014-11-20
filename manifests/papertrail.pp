@@ -1,23 +1,11 @@
 # manifests/papertrail.pp
 
-class adv_windows::papertrail($workFolder,
-                              $host,
+class adv_windows::papertrail($host,
                               $port) {
 
-  File { source_permissions => ignore }
-  ensure_resource(file, $workFolder, {ensure => directory})
-
-  file{'nxlog':
-    ensure => present,
-    path   => "${workFolder}\\nxlog-ce-2.8.1248.msi",
-    source => 'puppet:///modules/adv_windows/nxlog-ce-2.8.1248.msi',
-    notify => Exec['InstallPapertrail']
-  }
-
-  exec{'InstallPapertrail':
-    command     => "msiexec.exe /i ${workFolder}\\nxlog-ce-2.8.1248.msi /qb",
-    path        => 'C:\Windows\system32',
-    refreshonly => true,
+  package{'nxlog':
+    ensure   => present,
+    provider => 'chocolatey'
   }
 
   ensure_resource(file, 'C:\\Program Files (x86)\\nxlog', {ensure => directory})
@@ -26,11 +14,13 @@ class adv_windows::papertrail($workFolder,
   file{'nxlog.conf':
     ensure  => present,
     path    => 'C:\Program Files (x86)\nxlog\conf\nxlog.conf',
-    content => template('adv_windows/nxlog.conf.erb')
+    content => template('adv_windows/nxlog.conf.erb'),
+    require => Package['nxlog']
   }
 
   service{'nxlog':
-    ensure => 'running',
-    enable => true
+    ensure  => 'running',
+    enable  => true,
+    require => Package['nxlog']
   }
 }
