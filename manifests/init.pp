@@ -44,7 +44,8 @@ class adv_windows($workFolder,
   class{'adv_windows::awscli':
     defaultRegion      => $defaultRegion,
     awsAccessKeyId     => $awsAccessKeyId,
-    awsSecretAccessKey => $awsSecretAccessKey
+    awsSecretAccessKey => $awsSecretAccessKey,
+    require            => Class['chocolatey_sw']
   }
 
   # install Adobe Brackets
@@ -68,8 +69,9 @@ class adv_windows($workFolder,
 
   # PaperTral - centralised log collection
   class{'adv_windows::papertrail':
-    host => $pthost,
-    port => $ptport
+    host    => $pthost,
+    port    => $ptport,
+    require => Class['chocolatey_sw']
   }
 
   # AV Software
