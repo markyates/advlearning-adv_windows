@@ -20,7 +20,7 @@ class adv_windows($workFolder,
   }
 
   # Chocolate package manager install
-  include chocolatey-sw
+  include chocolatey_sw
 
   # Windows Timezone
   include adv_windows::timezone
