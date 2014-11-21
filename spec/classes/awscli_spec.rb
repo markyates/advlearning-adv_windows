@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe 'adv_windows::awscli', :type => 'class' do
-  let(:params) { { :defaultRegion => 'eu-west-1',
-                   :awsAccessKeyId => 'testaccesskeyid',
-                   :awsSecretAccessKey => 'testsecretaccesskey' } }
+  let(:params) { { :region => 'eu-west-1',
+                   :accessKeyId => 'testaccesskeyid',
+                   :secretAccessKey => 'testsecretaccesskey' } }
 
   let(:facts) { { :osfamily => 'windows' } }
 

@@ -42,10 +42,10 @@ class adv_windows($workFolder,
 
   # aws command line interface
   class{'adv_windows::awscli':
-    defaultRegion      => $defaultRegion,
-    awsAccessKeyId     => $awsAccessKeyId,
-    awsSecretAccessKey => $awsSecretAccessKey,
-    require            => Class['chocolatey_sw']
+    region          => $defaultRegion,
+    accessKeyId     => $awsAccessKeyId,
+    secretAccessKey => $awsSecretAccessKey,
+    require         => Class['chocolatey_sw']
   }
 
   # install Adobe Brackets
