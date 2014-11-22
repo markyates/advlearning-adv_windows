@@ -98,12 +98,12 @@ class adv_windows($workFolder,
       command     => 'AWSPVDriverPackager.exe /install /silent /noreboot',
       path        => $workFolder,
       refreshonly => true,
-      notify      => Exec['remediateDriverIssue.ps1']
     }
 
     exec{'remediateDriverIssue.ps1':
       command  => 'RemediateDriverIssue.ps1',
       path     => $workFolder,
+      creates  => "${workfolder}\\RemediateDriverIssue.log"
       provider => powershell
     }
   }
