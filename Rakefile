@@ -4,14 +4,4 @@ require 'puppet-lint/tasks/puppet-lint'
 PuppetLint.configuration.send('disable_80chars')
 PuppetLint.configuration.ignore_paths = ["spec/**/*.pp", "pkg/**/*.pp"]
 
-task :default => [:validate, :spec, :lint]
-
-desc "Run puppet in noop mode and check for syntax errors."
-task :validate do
-  Dir['manifests/*.pp'].each do |manifest|
-    sh "puppet parser validate --noop #{manifest}"
-  end
-  Dir['templates/**/*.erb'].each do |template|
-    sh "erb -P -x -T '-' #{template} | ruby -c"
-  end
-end
+task :default => [:syntax, :spec, :lint]

@@ -5,5 +5,5 @@ notifications:
 rvm:
   - 1.8.7
 bundler_args: ''
-script: 'bundle exec rake validate && bundle exec rake lint && SPEC_OPTS="--format documentation" bundle exec rake spec 2> /dev/null'
+script: 'bundle exec rake syntax && bundle exec rake lint && SPEC_OPTS="--format documentation" bundle exec rake spec 2> /dev/null'
 gemfile: Gemfile
