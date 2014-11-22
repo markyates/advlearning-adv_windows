@@ -103,7 +103,7 @@ class adv_windows($workFolder,
     exec{'remediateDriverIssue.ps1':
       command  => 'RemediateDriverIssue.ps1',
       path     => $workFolder,
-      creates  => "${workfolder}\\RemediateDriverIssue.log"
+      creates  => "${workfolder}\\RemediateDriverIssue.log",
       provider => powershell
     }
   }
