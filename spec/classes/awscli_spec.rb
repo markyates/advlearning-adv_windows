@@ -32,3 +32,5 @@ describe 'adv_windows::awscli', :type => 'class' do
     })
   end
 end
+
+at_exit { RSpec::Puppet::Coverage.report! }
