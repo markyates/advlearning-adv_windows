@@ -18,5 +18,3 @@ describe 'adv_windows::bitdefender', :type => 'class' do
     })
   end
 end
-
-at_exit { RSpec::Puppet::Coverage.report! }

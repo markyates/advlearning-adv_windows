@@ -19,5 +19,3 @@ describe 'adv_windows::centrastage', :type => 'class' do
     })
   end
 end
-
-at_exit { RSpec::Puppet::Coverage.report! }

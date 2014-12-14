@@ -10,4 +10,3 @@ describe 'adv_windows::timezone', :type => 'class' do
   end
 end
 
-at_exit { RSpec::Puppet::Coverage.report! }
