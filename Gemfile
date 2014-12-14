@@ -14,4 +14,4 @@ gem 'puppetlabs_spec_helper'
 gem 'puppet-lint'
 gem 'puppet-syntax'
 gem 'metadata-json-lint'
-gem 'coveralls', require: false
+gem 'coveralls'
