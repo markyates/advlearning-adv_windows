@@ -5,3 +5,5 @@ describe 'adv_windows::msdtc', :type => 'class' do
     should contain_exec('Configure MSDTC')
   end
 end
+
+at_exit { RSpec::Puppet::Coverage.report! }

@@ -61,3 +61,5 @@ describe 'adv_windows', :type => 'class' do
   end
 
 end
+
+at_exit { RSpec::Puppet::Coverage.report! }

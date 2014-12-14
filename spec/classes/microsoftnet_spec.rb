@@ -20,3 +20,5 @@ describe 'adv_windows::microsoftnet' do
     should contain_dism('NetFx4Extended-ASPNET45').with({'ensure' => 'present'})
   end
 end
+
+at_exit { RSpec::Puppet::Coverage.report! }

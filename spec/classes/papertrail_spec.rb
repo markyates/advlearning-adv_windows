@@ -25,3 +25,5 @@ describe 'adv_windows::papertrail' do
     }).that_requires('Package[nxlog]');
   end
 end
+
+at_exit { RSpec::Puppet::Coverage.report! }
