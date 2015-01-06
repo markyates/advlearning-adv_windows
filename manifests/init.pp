@@ -1,7 +1,5 @@
+# manifiest/init.pp
 # == Class: adv_windows
-#
-# A class to serve as example to do some tests on.
-#
 
 class adv_windows($workFolder,
                   $defaultRegion,
