@@ -35,6 +35,13 @@ class adv_windows($workFolder,
   # basic .NET install for 3.5 and 4
   include adv_windows::microsoftnet
 
+  # .net framework 4.5
+  package {'dotnet4.5':
+    ensure   => 'present',
+    provider => 'chocolatey',
+    require  => Class['chocolatey_sw']
+  }
+
   # MSDTC settings
   include adv_windows::msdtc
 
