@@ -17,6 +17,13 @@ class adv_windows($workFolder,
     ensure => directory
   }
 
+  # should only run puppet agent once every 2h
+  file{'puppet.conf':
+    ensure  => present,
+    path    => 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf',
+    content => template('adv_windows/puppet.conf.erb')
+  }
+
   # Chocolate package manager install
   include chocolatey_sw
 
