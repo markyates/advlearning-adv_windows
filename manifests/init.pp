@@ -11,10 +11,18 @@ class adv_windows($workFolder,
                   $ptport) {
   # Defaults
   File { source_permissions => ignore }
+  Package { provider => chocolatey }
 
   # Ensure working folder exists
   file{$workFolder:
     ensure => directory
+  }
+
+  # install chocolatey
+  exec {'chocoInst':
+    command  => template('adv_windows/chocolatey.ps1'),
+#    onlyif   => template('adv_windows/msdtc/check.ps1.erb'),
+    provider => powershell
   }
 
   # should only run puppet agent once every 2h
