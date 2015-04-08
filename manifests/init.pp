@@ -25,7 +25,7 @@ class adv_windows($workFolder,
   }
 
   # Chocolate package manager install
-  include chocolatey_sw
+  # include chocolatey_sw
 
   # Windows Timezone
   include adv_windows::timezone
@@ -44,9 +44,8 @@ class adv_windows($workFolder,
 
   # .net framework 4.5
   package {'dotnet4.5':
-    ensure   => 'present',
-    provider => 'chocolatey',
-    require  => Class['chocolatey_sw']
+    ensure   => latest,
+    provider => 'chocolatey'
   }
 
   # MSDTC settings
@@ -56,15 +55,13 @@ class adv_windows($workFolder,
   class{'adv_windows::awscli':
     region          => $defaultRegion,
     accessKeyId     => $awsAccessKeyId,
-    secretAccessKey => $awsSecretAccessKey,
-    require         => Class['chocolatey_sw']
+    secretAccessKey => $awsSecretAccessKey
   }
 
   # install Adobe Brackets
   package {'Brackets':
-    ensure   => present,
-    provider => 'chocolatey',
-    require  => Class['chocolatey_sw']
+    ensure   => latest,
+    provider => 'chocolatey'
   }
 
   # install CentraStage
@@ -82,8 +79,7 @@ class adv_windows($workFolder,
   # PaperTral - centralised log collection
   class{'adv_windows::papertrail':
     host    => $pthost,
-    port    => $ptport,
-    require => Class['chocolatey_sw']
+    port    => $ptport
   }
 
   # AV Software
