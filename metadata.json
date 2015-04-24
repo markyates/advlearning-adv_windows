@@ -23,10 +23,6 @@
       "version_requirement": ">= 4.2.1"
     },
     {
-      "name": "martezr/windows_disable_ipv6",
-      "version_requirement": ">=0.1.1"
-    },
-    {
       "name": "puppetlabs/registry",
       "version_requirement": ">= 1.0.3"
     },
