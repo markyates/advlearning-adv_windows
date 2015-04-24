@@ -30,12 +30,6 @@ class adv_windows($workFolder,
   # Windows Timezone
   include adv_windows::timezone
 
-  # ipv6 settings
-  class{'windows_disable_ipv6':
-    ipv6_disable => true,
-    ipv6_reboot  => false
-  }
-
   # Windows Firewall Settings
   include adv_windows::windowsfirewall
 
