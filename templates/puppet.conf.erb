@@ -3,7 +3,7 @@ server=puppet
 pluginsync=true
 autoflush=true
 graph=true
-environment=<%= @::environment %>
+environment=<%= scope.lookupvar('::environment') %>
 
 [agent]
 runinterval=2h
