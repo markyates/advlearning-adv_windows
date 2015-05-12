@@ -32,9 +32,6 @@ class adv_windows($workFolder,
     content => template('adv_windows/puppet.conf.erb')
   }
 
-  # Chocolate package manager install
-  # include chocolatey_sw
-
   # Windows Timezone
   include adv_windows::timezone
 
