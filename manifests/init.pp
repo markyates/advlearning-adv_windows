@@ -21,7 +21,7 @@ class adv_windows($workFolder,
   # install chocolatey
   exec {'chocoInst':
     command  => template('adv_windows/chocolatey.ps1'),
-#    onlyif   => template('adv_windows/msdtc/check.ps1.erb'),
+    creates  => 'C:\ProgramData\chocolatey',
     provider => powershell
   }
 
