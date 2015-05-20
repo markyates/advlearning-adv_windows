@@ -86,32 +86,4 @@ class adv_windows($workFolder,
     workFolder => $workFolder
   }
 
-
-  if $::osfamily == 'windows' and $::kernelmajversion == '6.3' {
-    file{"${workFolder}\\RemediateDriverIssue.ps1":
-      ensure  => present,
-      content => template('adv_windows/RemediateDriverIssue.ps1'),
-      require => File[$workFolder]
-    }
-
-    file{"${workFolder}\\AWSPVDriverPackager.exe":
-      ensure  => present,
-      source  => 'puppet:///modules/adv_windows/AWSPVDriverPackager.exe',
-      require => File[$workFolder,"${workFolder}\\RemediateDriverIssue.ps1"],
-      notify  => Exec['AWSPVDriverPackager']
-    }
-
-    exec{'AWSPVDriverPackager':
-      command     => 'AWSPVDriverPackager.exe /install /silent /noreboot',
-      path        => $workFolder,
-      refreshonly => true,
-    }
-
-    exec{'remediateDriverIssue.ps1':
-      command  => 'RemediateDriverIssue.ps1',
-      path     => $workFolder,
-      creates  => "${workFolder}\\RemediateDriverIssue.log",
-      provider => powershell
-    }
-  }
 }
