@@ -4,7 +4,7 @@ class adv_windows::cloudhealth($workFolder) {
   File { source_permissions => ignore }
   ensure_resource(file, $workFolder, { ensure => directory })
 
-  file{'BitdefenderInstaller':
+  file{'CloudHealthInstaller':
     ensure => present,
     path   => "${workFolder}\\CloudHealthAgent.exe",
     source => 'puppet:///modules/adv_windows/CloudHealthAgent.exe',
