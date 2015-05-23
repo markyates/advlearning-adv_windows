@@ -86,4 +86,9 @@ class adv_windows($workFolder,
     workFolder => $workFolder
   }
 
+  # CloudHealth
+  class{'adv_windows::cloudhealth':
+    workFolder => $workFolder
+  }
+
 }
