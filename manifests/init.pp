@@ -8,7 +8,8 @@ class adv_windows($workFolder,
                   $csenv,
                   $nrlicense,
                   $pthost,
-                  $ptport) {
+                  $ptport,
+                  $iscloud = true) {
   # Defaults
   File { source_permissions => ignore }
   Package { provider => chocolatey }
@@ -87,8 +88,9 @@ class adv_windows($workFolder,
   }
 
   # CloudHealth
-  class{'adv_windows::cloudhealth':
-    workFolder => $workFolder
+  if $iscloud {
+    class{'adv_windows::cloudhealth':
+      workFolder => $workFolder
+    }
   }
-
 }
