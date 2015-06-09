@@ -21,7 +21,7 @@ class adv_windows($workFolder,
 
   # install chocolatey
   exec {'execPolicy':
-    command  => 'Set-ExecutionPolicy Unrestricted -Force',
+    command  => 'Set-ExecutionPolicy Unrestricted -Force; exit 0',
     provider => powershell
   }->
   exec {'chocoInst':
