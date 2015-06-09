@@ -20,7 +20,7 @@ class adv_windows($workFolder,
   }
 
   # install chocolatey
-  registry_value { 'HKLM\Software\Microsoft\PowerShell\1\Shellds\Microsoft.PowerShell\ExecutionPolicy':
+  registry_value { 'HKEY_CURRENT_USER\Software\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell\ExecutionPolicy':
     ensure => present,
     type   => string,
     data   => "Unrestricted"
