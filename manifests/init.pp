@@ -83,8 +83,8 @@ class adv_windows($workFolder,
 
   # PaperTral - centralised log collection
   class{'adv_windows::papertrail':
-    host    => $pthost,
-    port    => $ptport
+    host => $pthost,
+    port => $ptport
   }
 
   # AV Software
