@@ -4,7 +4,7 @@ class adv_windows::papertrail($host,
                               $port) {
 
   package{'nxlog':
-    ensure   => present,
+    ensure   => latest,
     provider => 'chocolatey'
   }
 

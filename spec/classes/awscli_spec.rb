@@ -9,7 +9,7 @@ describe 'adv_windows::awscli', :type => 'class' do
 
   it 'should install the awscli chocolatey package' do
     should contain_package('awscli').with({
-      'ensure'   => 'present',
+      'ensure'   => 'latest',
       'provider' => 'chocolatey'
     })
   end

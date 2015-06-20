@@ -5,7 +5,7 @@ class adv_windows::awscli($region,
                           $secretAccessKey) {
 
   package{'awscli':
-    ensure   => present,
+    ensure   => latest,
     provider => 'chocolatey'
   }
 
