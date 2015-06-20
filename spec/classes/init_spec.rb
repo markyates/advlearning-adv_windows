@@ -14,25 +14,14 @@ describe 'adv_windows', :type => 'class' do
                   :osfamily => 'windows',
                   :kernelmajversion => '6.3' } }
 
-  it { should contain_class('chocolatey_sw') }
+  it { should contain_exec('execPolicy') }
+  it { should contain_exec('chocoInst') }
   it { should contain_class('adv_windows::timezone') }
   it { should contain_class('adv_windows::microsoftnet') }
   it { should contain_class('adv_windows::msdtc') }
 
-  it 'should disable ipv6' do
-    should contain_class('windows_disable_ipv6').with({
-      'ipv6_disable' => 'true',
-      'ipv6_reboot'  => 'false'
-    });
-  end
 
-#  it 'should install and configure awscli' do
-#    should contain_class('adv_windows::awscli').with({
-#      'region'          => 'eu-west-1',
-#      'accessKeyId'     => 'accesskeyid',
-#      'secretAccessKey' => 'accesskey'
-#    }).that_requires('Class[chocolatey_sw]');
-#  end
+  should contain_class('adv_windows::awscli')
 
   it 'should install adobe brackets' do
     should contain_package('Brackets').with({

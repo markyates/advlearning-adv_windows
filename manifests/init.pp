@@ -8,13 +8,27 @@ class adv_windows($workFolder,
                   $csenv,
                   $nrlicense,
                   $pthost,
-                  $ptport) {
+                  $ptport,
+                  $iscloud = true) {
   # Defaults
   File { source_permissions => ignore }
+  Package { provider => chocolatey }
 
   # Ensure working folder exists
   file{$workFolder:
     ensure => directory
+  }
+
+  # install chocolatey
+  exec {'execPolicy':
+    command  => 'Set-ExecutionPolicy Unrestricted -Force; exit 0',
+    unless   => '$policy = get-executionpolicy; if ($policy -eq "Unrestricted") {exit 1}',
+    provider => powershell
+  }->
+  exec {'chocoInst':
+    command  => template('adv_windows/chocolatey.ps1'),
+    creates  => 'C:\ProgramData\chocolatey',
+    provider => powershell
   }
 
   # should only run puppet agent once every 2h
@@ -23,9 +37,6 @@ class adv_windows($workFolder,
     path    => 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf',
     content => template('adv_windows/puppet.conf.erb')
   }
-
-  # Chocolate package manager install
-  include chocolatey_sw
 
   # Windows Timezone
   include adv_windows::timezone
@@ -38,9 +49,8 @@ class adv_windows($workFolder,
 
   # .net framework 4.5
   package {'dotnet4.5':
-    ensure   => 'present',
-    provider => 'chocolatey',
-    require  => Class['chocolatey_sw']
+    ensure   => latest,
+    provider => 'chocolatey'
   }
 
   # MSDTC settings
@@ -50,15 +60,13 @@ class adv_windows($workFolder,
   class{'adv_windows::awscli':
     region          => $defaultRegion,
     accessKeyId     => $awsAccessKeyId,
-    secretAccessKey => $awsSecretAccessKey,
-    require         => Class['chocolatey_sw']
+    secretAccessKey => $awsSecretAccessKey
   }
 
   # install Adobe Brackets
   package {'Brackets':
-    ensure   => present,
-    provider => 'chocolatey',
-    require  => Class['chocolatey_sw']
+    ensure   => latest,
+    provider => 'chocolatey'
   }
 
   # install CentraStage
@@ -75,9 +83,8 @@ class adv_windows($workFolder,
 
   # PaperTral - centralised log collection
   class{'adv_windows::papertrail':
-    host    => $pthost,
-    port    => $ptport,
-    require => Class['chocolatey_sw']
+    host => $pthost,
+    port => $ptport
   }
 
   # AV Software
@@ -85,32 +92,10 @@ class adv_windows($workFolder,
     workFolder => $workFolder
   }
 
-
-  if $::osfamily == 'windows' and $::kernelmajversion == '6.3' {
-    file{"${workFolder}\\RemediateDriverIssue.ps1":
-      ensure  => present,
-      content => template('adv_windows/RemediateDriverIssue.ps1'),
-      require => File[$workFolder]
-    }
-
-    file{"${workFolder}\\AWSPVDriverPackager.exe":
-      ensure  => present,
-      source  => 'puppet:///modules/adv_windows/AWSPVDriverPackager.exe',
-      require => File[$workFolder,"${workFolder}\\RemediateDriverIssue.ps1"],
-      notify  => Exec['AWSPVDriverPackager']
-    }
-
-    exec{'AWSPVDriverPackager':
-      command     => 'AWSPVDriverPackager.exe /install /silent /noreboot',
-      path        => $workFolder,
-      refreshonly => true,
-    }
-
-    exec{'remediateDriverIssue.ps1':
-      command  => 'RemediateDriverIssue.ps1',
-      path     => $workFolder,
-      creates  => "${workFolder}\\RemediateDriverIssue.log",
-      provider => powershell
+  # CloudHealth
+  if $iscloud {
+    class{'adv_windows::cloudhealth':
+      workFolder => $workFolder
     }
   }
 }
