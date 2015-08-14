@@ -81,12 +81,6 @@ class adv_windows($workFolder,
     nrlicense  => $nrlicense
   }
 
-  # PaperTral - centralised log collection
-  class{'adv_windows::papertrail':
-    host => $pthost,
-    port => $ptport
-  }
-
   # AV Software
   class{'adv_windows::bitdefender':
     workFolder => $workFolder
