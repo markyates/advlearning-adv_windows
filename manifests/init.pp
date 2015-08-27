@@ -7,8 +7,6 @@ class adv_windows($workFolder,
                   $awsSecretAccessKey,
                   $csenv,
                   $nrlicense,
-                  $pthost,
-                  $ptport,
                   $iscloud = true) {
   # Defaults
   File { source_permissions => ignore }
@@ -20,16 +18,7 @@ class adv_windows($workFolder,
   }
 
   # install chocolatey
-  exec {'execPolicy':
-    command  => 'Set-ExecutionPolicy Unrestricted -Force; exit 0',
-    unless   => '$policy = get-executionpolicy; if ($policy -eq "Unrestricted") {exit 1}',
-    provider => powershell
-  }->
-  exec {'chocoInst':
-    command  => template('adv_windows/chocolatey.ps1'),
-    creates  => 'C:\ProgramData\chocolatey',
-    provider => powershell
-  }
+  include chocoinst
 
   # should only run puppet agent once every 2h
   file{'puppet.conf':
@@ -44,20 +33,11 @@ class adv_windows($workFolder,
   # Windows Firewall Settings
   include adv_windows::windowsfirewall
 
-  # basic .NET install for 3.5 and 4
-  include adv_windows::microsoftnet
-
-  # .net framework 4.5
-  package {'dotnet4.5':
-    ensure   => latest,
-    provider => 'chocolatey'
-  }
-
   # MSDTC settings
   include adv_windows::msdtc
 
   # aws command line interface
-  class{'adv_windows::awscli':
+  class{'awscli':
     region          => $defaultRegion,
     accessKeyId     => $awsAccessKeyId,
     secretAccessKey => $awsSecretAccessKey

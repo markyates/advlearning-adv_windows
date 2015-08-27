@@ -1,9 +1,14 @@
 fixtures:
   repositories:
+    chocoinst:
+      repo: "https://github.com/AdvancedLearning/advlearning-chocoinst"
+      branch: "develop"
+    awscli:
+      repo: "https://github.com/AdvancedLearning/advlearning-awscli"
+      branch: "develop"
   forge_modules:
     stdlib: "puppetlabs/stdlib"
     inifile: "puppetlabs/inifile"
-    dism: "puppetlabs/dism"
     registry: "puppetlabs/registry"
     chocolatey: "chocolatey/chocolatey"
   symlinks:
