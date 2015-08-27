@@ -1,3 +1,4 @@
+sudo: false
 env:
   - PUPPET_VERSION=3.7.3
 notifications:
