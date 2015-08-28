@@ -2,7 +2,7 @@ fixtures:
   repositories:
     chocoinst:
       repo: "https://github.com/AdvancedLearning/advlearning-chocoinst"
-      branch: "develop"
+      branch: "master"
     awscli:
       repo: "https://github.com/AdvancedLearning/advlearning-awscli"
       branch: "develop"

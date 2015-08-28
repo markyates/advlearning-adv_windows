@@ -29,7 +29,13 @@ describe 'adv_windows', :type => 'class' do
 
   it { should contain_class('adv_windows::msdtc') }
 
-  it { should contain_class('awscli') }
+  it  'should install aws command line' do
+    should contain_class('awscli').with({
+      'dregion'         => 'eu-west-1',
+      'accessKeyId'     => 'accesskeyid',
+      'secretAccessKey' => 'accesskey'
+    });
+  end
 
   it 'should install adobe brackets' do
     should contain_package('Brackets').with({
