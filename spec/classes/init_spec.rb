@@ -3,11 +3,11 @@ require 'spec_helper'
 describe 'adv_windows', :type => 'class' do
   let(:params) { { :workFolder         => 'D:\\Software',
                    :defaultRegion      => 'eu-west-1',
-                   :awsAccessKeyId     => 'accesskeyid',
-                   :awsSecretAccessKey => 'accesskey',
+                   :awsAccessKeyId     => '12345',
+                   :awsSecretAccessKey => 'abcde',
                    :csenv              => 'test',
                    :nrlicense          => 'testnrlicense',
-                   :iscloud            => false } }
+                   :iscloud            => true } }
 
   let(:facts) { { :operatingsystem => 'windows',
                   :osfamily => 'windows',
@@ -30,11 +30,7 @@ describe 'adv_windows', :type => 'class' do
   it { should contain_class('adv_windows::msdtc') }
 
   it  'should install aws command line' do
-    should contain_class('awscli').with({
-      'dregion'         => 'eu-west-1',
-      'accessKeyId'     => 'accesskeyid',
-      'secretAccessKey' => 'accesskey'
-    });
+    should contain_class('awscli')
   end
 
   it 'should install adobe brackets' do
@@ -57,5 +53,9 @@ describe 'adv_windows', :type => 'class' do
   end
 
   it { should contain_class('adv_windows::bitdefender') }
+
+  it { should contain_class('adv_windows::cloudhealth').with({
+    'workfolder' => 'D:\\Software'
+  })}
 
 end
