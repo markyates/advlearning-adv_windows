@@ -1,9 +1,9 @@
+sudo: false
 env:
   - PUPPET_VERSION=3.7.3
 notifications:
   email: false
 rvm:
-  - 1.9.3
   - 2.1.4
 bundler_args: ''
 script: 'bundle exec rake syntax && bundle exec rake lint && SPEC_OPTS="--format documentation" bundle exec rake spec 2> /dev/null'

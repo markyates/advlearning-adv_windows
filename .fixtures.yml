@@ -1,12 +1,13 @@
 fixtures:
   repositories:
-    chocolatey_sw: https://github.com/CERIT-SC/puppet-chocolatey_sw.git
-    windows_disable_ipv6: https://github.com/AdvancedLearning/puppet-windows_disable_ipv6.git
+    chocoinst: "https://github.com/AdvancedLearning/advlearning-chocoinst"
+    awscli:
+      repo: "https://github.com/AdvancedLearning/advlearning-awscli"
+      branch: "develop"
   forge_modules:
     stdlib: "puppetlabs/stdlib"
     inifile: "puppetlabs/inifile"
-    dism: "puppetlabs/dism"
     registry: "puppetlabs/registry"
-    chocolatey: "rismoney/chocolatey"
+    chocolatey: "chocolatey/chocolatey"
   symlinks:
     adv_windows: "#{source_dir}"

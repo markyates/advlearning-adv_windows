@@ -3,36 +3,46 @@ require 'spec_helper'
 describe 'adv_windows', :type => 'class' do
   let(:params) { { :workFolder         => 'D:\\Software',
                    :defaultRegion      => 'eu-west-1',
-                   :awsAccessKeyId     => 'accesskeyid',
-                   :awsSecretAccessKey => 'accesskey',
+                   :awsAccessKeyId     => '12345',
+                   :awsSecretAccessKey => 'abcde',
                    :csenv              => 'test',
                    :nrlicense          => 'testnrlicense',
-                   :pthost             => 'logs.example.com',
-                   :ptport             => '1234' } }
+                   :iscloud            => true } }
 
   let(:facts) { { :operatingsystem => 'windows',
                   :osfamily => 'windows',
                   :kernelmajversion => '6.3' } }
 
-  it { should contain_exec('execPolicy') }
-  it { should contain_exec('chocoInst') }
+  it { should contain_file('D:\\Software') }
+
+
+  it { should contain_class('chocoinst') }
+
+  it { should contain_file('puppet.conf').with({
+      'ensure'  => 'present',
+      'path'    => 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf'
+    })
+  }
+
   it { should contain_class('adv_windows::timezone') }
-  it { should contain_class('adv_windows::microsoftnet') }
+  it { should contain_class('adv_windows::windowsfirewall') }
+
   it { should contain_class('adv_windows::msdtc') }
 
-
-  should contain_class('adv_windows::awscli')
+  it  'should install aws command line' do
+    should contain_class('awscli')
+  end
 
   it 'should install adobe brackets' do
     should contain_package('Brackets').with({
-      'ensure'   => 'present',
+      'ensure'   => 'latest',
       'provider' => 'chocolatey',
-    }).that_requires('Class[chocolatey_sw]');
+    });
   end
 
   it 'should install centrastage' do
     should contain_class('adv_windows::centrastage').with({
-      'csenv'      => 'test'
+      'csenv' => 'test'
     });
   end
 
@@ -42,11 +52,10 @@ describe 'adv_windows', :type => 'class' do
     });
   end
 
-  it 'should install papertrail' do
-    should contain_class('adv_windows::papertrail').with({
-      'host' => 'logs.example.com',
-      'port' => '1234',
-    }).that_requires('Class[chocolatey_sw]');
-  end
+  it { should contain_class('adv_windows::bitdefender') }
+
+  it { should contain_class('adv_windows::cloudhealth').with({
+    'workfolder' => 'D:\\Software'
+  })}
 
 end
