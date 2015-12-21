@@ -1,5 +1,5 @@
 ### adv_windows
-#### v2.0.0 [![Build Status](https://travis-ci.org/AdvancedLearning/puppet-adv_windows.svg?branch=develop)](https://travis-ci.org/AdvancedLearning/puppet-adv_windows)
+#### v2.1.0 [![Build Status](https://travis-ci.org/AdvancedLearning/puppet-adv_windows.svg?branch=master)](https://travis-ci.org/AdvancedLearning/puppet-adv_windows)
 
 Puppet module for windows servers managed by Advanced Learning.
 
